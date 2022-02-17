@@ -10,27 +10,28 @@ public class TriviaGame {
     //int[] purses = new int[6];
     //boolean[] inPenaltyBox = new boolean[6];
     ArrayList<Player> players = new ArrayList<>();
+    Questions questions = new Questions();
 
-    LinkedList popQuestions = new LinkedList();
-    LinkedList scienceQuestions = new LinkedList();
-    LinkedList sportsQuestions = new LinkedList();
-    LinkedList rockQuestions = new LinkedList();
+    //LinkedList popQuestions = new LinkedList();
+    //LinkedList scienceQuestions = new LinkedList();
+    //LinkedList sportsQuestions = new LinkedList();
+    //LinkedList rockQuestions = new LinkedList();
 
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
 
-    public TriviaGame() {
-        for (int i = 0; i < 50; i++) {
-            popQuestions.addLast("Pop Question " + i);
-            scienceQuestions.addLast(("Science Question " + i));
-            sportsQuestions.addLast(("Sports Question " + i));
-            rockQuestions.addLast(createRockQuestion(i));
-        }
-    }
+//    public TriviaGame() {
+//        for (int i = 0; i < 50; i++) {
+//            popQuestions.addLast("Pop Question " + i);
+//            scienceQuestions.addLast(("Science Question " + i));
+//            sportsQuestions.addLast(("Sports Question " + i));
+//            rockQuestions.addLast(("Rock Question " + i));
+//        }
+//    }
 
-    public String createRockQuestion(int index) {
-        return "Rock Question " + index;
-    }
+    //public String createRockQuestion(int index) {
+        //return "Rock Question " + index;
+    //}
 
     public boolean isPlayable() {
         return (howManyPlayers() >= 2);
@@ -61,8 +62,7 @@ public class TriviaGame {
         if (players.get(currentPlayer).isInPenaltyBox()) {
             if (roll % 2 != 0) {
                 isGettingOutOfPenaltyBox = true;
-
-                announce(players.get(currentPlayer) + " is getting out of the penalty box");
+                announce(players.get(currentPlayer).getPlayerName() + " is getting out of the penalty box");
                 players.get(currentPlayer).addRoll(roll);
                 //places[currentPlayer] = places[currentPlayer] + roll;
                 //if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
@@ -97,13 +97,13 @@ public class TriviaGame {
 
     private void askQuestion() {
         if (currentCategory() == "Pop")
-            announce(popQuestions.removeFirst());
+            announce(questions.popQuestions.removeFirst());
         if (currentCategory() == "Science")
-            announce(scienceQuestions.removeFirst());
+            announce(questions.scienceQuestions.removeFirst());
         if (currentCategory() == "Sports")
-            announce(sportsQuestions.removeFirst());
+            announce(questions.sportsQuestions.removeFirst());
         if (currentCategory() == "Rock")
-            announce(rockQuestions.removeFirst());
+            announce(questions.rockQuestions.removeFirst());
     }
 
 
